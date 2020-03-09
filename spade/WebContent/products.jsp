@@ -30,14 +30,39 @@ try{
 	conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
 	 ps = conn.prepareStatement("SELECT * FROM products");
 	 
+	 
+	 
 	 ResultSet rs= ps.executeQuery();
-  if(!(rs.next())){
+  
+	 
+	 
+	 if(!(rs.next())){
 	  out.println("NOT AVAILABLE");
   }
   else{ 
-	 do{
+	 %>
+	   <form action="" method="" >
+	  <input type="text" name="key" placeholder="search here">
+	  <input type="submit" value="search"> 
+	  
+	  
+	  
+	  </form></br></br>
+	 
+	 
+	 
+	 
+	 
+	 <%
+	  
+	  
+	  
+	  
+	  
+	  do{
 	  
 	  %>
+	
 	  
 	 
 	  <form action="desc.jsp " method="get">
