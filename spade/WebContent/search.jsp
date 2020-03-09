@@ -25,11 +25,13 @@ catch(ClassNotFoundException e){
 Connection conn=null;
 PreparedStatement ps = null;
 
-String branch = request.getParameter("input");
+String key = request.getParameter("key");
+String key2 = "%"+key+"%";
+
 try{
 	conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
-	 ps = conn.prepareStatement("SELECT * FROM products");
-	 
+	 ps = conn.prepareStatement("Select * FROM products WHERE pname LIKE ? ");
+	 ps.setString(1,key2);
 	 
 	 
 	 ResultSet rs= ps.executeQuery();
@@ -37,11 +39,11 @@ try{
 	 
 	 
 	 if(!(rs.next())){
-	  out.println("NOT AVAILABLE");
+	  %> <h1>no result</h1><%
   }
   else{ 
 	 %>
-	   <form action="search.jsp" method="get" >
+	   <form action="" method="" >
 	  <input type="text" name="key" placeholder="search here">
 	  <input type="submit" value="search"> 
 	  
