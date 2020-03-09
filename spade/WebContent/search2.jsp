@@ -24,9 +24,6 @@ border-collapse:collapse;
     response.sendRedirect("login.html"); 
 } 		
 else {
-	 String type = request.getParameter("type");
-
-
 %>
 <div style="float:right">
 <form action="filter.jsp" method="get">
@@ -60,7 +57,7 @@ else {
         
         <option value="Product Entry">Product Entry</option>
         <option value="Order Details">Order Details</option>
-        <option value="User Details">Users Details</option>
+        
       </select>
 <input type="submit" value="change">
 
@@ -83,16 +80,35 @@ catch(ClassNotFoundException e){
 } 
 Connection conn=null;
 PreparedStatement ps = null;
+
+String key = request.getParameter("key");
+String key2 = "%"+key+"%";
 try{
 	conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
-	 ps = conn.prepareStatement("SELECT * FROM products where ptype=?");
-	 ps.setString(1,type);
-	 ResultSet rs = ps.executeQuery();
+	 ps = conn.prepareStatement("Select * FROM products WHERE pname LIKE ? ");
+	 ps.setString(1,key2);
+	 
+	 ResultSet rs= ps.executeQuery();
+	 
+	 
 	 if(!(rs.next())){
 		 %>
-		 <p align="center"><h1 style="color:red">nothing added in product table of type <%=type %> you can add at <a href="options.jsp">Product Entry</a></h1></h1></p>
+		 <p align="center"><h1 style="color:red">nothing matches in product table please add at <a href="options.jsp">Product Entry</a></h1></h1></p>
 		 <%}else{
 			 %>
+			  <form action="search2.jsp" method="get" >
+	  <input type="text" name="key" placeholder="search here">
+	  <input type="submit" value="search"> 
+	  
+	  
+	  
+	  </form></br></br>
+			 
+			 
+			 
+			 
+			 
+			 
 			
 		<table style="width:2000">
   <tr>
@@ -110,7 +126,7 @@ try{
     <td><button type="submit" name="car" value="<%=rs.getInt(1)%>"><img src=<%=rs.getString(4) %> alt="Smiley face" height="42" width="50"></button></td>
     <td><%=rs.getInt(5) %></td>
    </form>
-   <form action="fstockadd" method="get">
+   <form action="stockadd" method="get">
     <td>
     <input type="text" name=add size="20">
      <button type="submit" name="id" value="<%=rs.getInt(1)%>" >Add</button>

@@ -8,9 +8,9 @@
 </head>
 <body >
 <%@page import="java.sql.*" %>
-<h3><p align="right"> <a href=" cart.jsp">Cart</a> </p></h3>
-<h2 style="color:blue;"><center>Select Product</center></h2>
  <h3><p align="right"> <a href="logout">Logout</a> </p></h3>
+<h2 style="color:blue;"><center>Select Product</center></h2>
+<h3><p align="right"> <a href=" cart.jsp">Cart</a> </p></h3>
  <div align="center">
 <%	
 try
@@ -20,7 +20,9 @@ try
 catch(ClassNotFoundException e){
 	System.out.println(e);
 } 
-
+if (session.getAttribute("id") == null) {
+    response.sendRedirect("products2.jsp"); 
+} 	else{
 
 Connection conn=null;
 PreparedStatement ps = null;
@@ -93,6 +95,6 @@ finally
 	 catch(Exception e){
 		 System.out.println(e);
 	 }
-}
+}}
 %>
  </div>

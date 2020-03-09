@@ -26,7 +26,7 @@ else {
        
         <option value="Stock Details">Stock Details</option>
         <option value="Order Details">Order Details</option>
-        
+        <option value="User Details">Users Details</option>
       </select>
 <input type="submit" value="change">
 

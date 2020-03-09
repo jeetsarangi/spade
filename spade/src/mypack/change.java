@@ -40,8 +40,11 @@ public class change extends HttpServlet {
 			    response.sendRedirect("stock.jsp"); 
 			    break;
 			case "Order Details": 
-			    response.sendRedirect("login.html"); 
-			    break;    
+			    response.sendRedirect("orders.jsp"); 
+			    break;
+			case "User Details": 
+			    response.sendRedirect("usersdetails.jsp"); 
+			    break;
 		    
 			}
 			

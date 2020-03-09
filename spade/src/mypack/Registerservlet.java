@@ -28,6 +28,7 @@ public class Registerservlet extends HttpServlet {
 		
 		Connection conn=null;
 		PreparedStatement ps = null;
+		PreparedStatement sp = null;
 		
 		String usern = request.getParameter("uname");
 		String email=request.getParameter("email");
@@ -49,6 +50,17 @@ public class Registerservlet extends HttpServlet {
 		try{
 			conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
 			ps = conn.prepareStatement("insert into users values(userid.nextval,?,?,?,?,?,?,?,?,?,?)");
+			sp = conn.prepareStatement("Select * from users where uname like ?");
+			
+			sp.setString(1,usern);
+			ResultSet rs= sp.executeQuery();
+              boolean found = rs.next();
+		     
+		     if (found) {
+		    	 
+		    	 response.sendRedirect("register2.html"); 
+		     }
+			else {
 			ps.setString(1,usern);
 			ps.setString(2,pass);
 			ps.setString(3,fname);
@@ -64,7 +76,7 @@ public class Registerservlet extends HttpServlet {
 			
 			ps.executeUpdate(); 
 			response.sendRedirect("login.html");   
-		}
+			}}
 		catch(SQLException e){
 			 System.out.println(e);
 		 }

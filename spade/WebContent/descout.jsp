@@ -8,8 +8,8 @@
 </head>
 <body>
 <%@page import="java.sql.*" %>
-<h3><p align="right"> <a href="logout">Logout</a> </p></h3>
-<h3><p align="right"> <a href="cart.jsp">Cart</a> </p></h3>
+<h3><p align="right"> <a href="Home.html">Homepage</a> </p></h3>
+<h3><p align="right"> <a href="login.html">Login</a> </p></h3>
 <%	
 try
 {
@@ -18,10 +18,11 @@ try
 catch(ClassNotFoundException e){
 	System.out.println(e);
 } 
-if (session.getAttribute("id") == null) {
+if (session.getAttribute("id")!= null) {
     
-	response.sendRedirect("descout.jsp?car="+Integer.parseInt(request.getParameter("car"))); 
-} 	else{
+	response.sendRedirect("desc.jsp?car="+Integer.parseInt(request.getParameter("car"))); 
+} 	
+else{
 Connection conn=null;
 PreparedStatement ps = null;
 PreparedStatement sp = null;

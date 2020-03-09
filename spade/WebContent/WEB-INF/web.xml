@@ -149,4 +149,24 @@
     <servlet-name>pricechange</servlet-name>
     <url-pattern>/pricechange</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deleteorder</display-name>
+    <servlet-name>deleteorder</servlet-name>
+    <servlet-class>mypack.deleteorder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteorder</servlet-name>
+    <url-pattern>/deleteorder</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deleteuser</display-name>
+    <servlet-name>deleteuser</servlet-name>
+    <servlet-class>mypack.deleteuser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteuser</servlet-name>
+    <url-pattern>/deleteuser</url-pattern>
+  </servlet-mapping>
 </web-app>

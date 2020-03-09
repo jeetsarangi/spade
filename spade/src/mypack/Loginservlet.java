@@ -59,7 +59,7 @@ public class Loginservlet extends HttpServlet {
 		    }
 		     else
 		     {
-		    	 response.sendRedirect("login.html");
+		    	 response.sendRedirect("login2.html");
 		     }
 		 }
 		 catch(SQLException e){

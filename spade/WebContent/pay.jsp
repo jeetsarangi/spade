@@ -80,10 +80,10 @@ try{
    Total Amount=<%=amount%>
    
    <form action="order" method="get">
-   <table>
+   <table >
    
-  <tr><td> <label for="cardholder">Cardholder's Name:</label>
-        <input type="text" id="cardholder" />
+  <tr><td> Cardholder's Name:</td>
+        <td><input type="text" id="cardholder" />
         </td></tr>
         
         <tr><td>Valid thru:</td>

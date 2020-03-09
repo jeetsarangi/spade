@@ -57,7 +57,7 @@ else {
         
         <option value="Product Entry">Product Entry</option>
         <option value="Order Details">Order Details</option>
-        
+        <option value="User Details">Users Details</option>
       </select>
 <input type="submit" value="change">
 
@@ -89,6 +89,19 @@ try{
 		 <p align="center"><h1 style="color:red">nothing added in product table please add at <a href="options.jsp">Product Entry</a></h1></h1></p>
 		 <%}else{
 			 %>
+			  <form action="search2.jsp" method="get" >
+	  <input type="text" name="key" placeholder="search here">
+	  <input type="submit" value="search"> 
+	  
+	  
+	  
+	  </form></br></br>
+			 
+			 
+			 
+			 
+			 
+			 
 			
 		<table style="width:2000">
   <tr>

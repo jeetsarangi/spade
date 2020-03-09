@@ -8,9 +8,9 @@
 </head>
 <body >
 <%@page import="java.sql.*" %>
-<h3><p align="right"> <a href="logout">Logout</a> </p></h3>
+<h3><p align="right"> <a href="Home.html">Homepage</a> </p></h3>
 <h2 style="color:blue;"><center>Select Product</center></h2>
- <h3><p align="right"> <a href=" cart.jsp">Cart</a> </p></h3>
+ <h3><p align="right"> <a href="login.html">Login</a> </p></h3>
  <div align="center">
 <%	
 try
@@ -20,20 +20,18 @@ try
 catch(ClassNotFoundException e){
 	System.out.println(e);
 } 
-if (session.getAttribute("id") == null) {
-    response.sendRedirect("searchout.jsp"); 
+if (session.getAttribute("id") != null) {
+    response.sendRedirect("products.jsp"); 
 } 	else{
 
 Connection conn=null;
 PreparedStatement ps = null;
 
-String key = request.getParameter("key");
-String key2 = "%"+key+"%";
-
+String branch = request.getParameter("input");
 try{
 	conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
-	 ps = conn.prepareStatement("Select * FROM products WHERE pname LIKE ? ");
-	 ps.setString(1,key2);
+	 ps = conn.prepareStatement("SELECT * FROM products");
+	 
 	 
 	 
 	 ResultSet rs= ps.executeQuery();
@@ -41,11 +39,11 @@ try{
 	 
 	 
 	 if(!(rs.next())){
-	  %> <h1>no result <a href="products.jsp">Search more</a></h1><%
+	  out.println("NOT AVAILABLE");
   }
   else{ 
 	 %>
-	   <form action="" method="" >
+	   <form action="searchout.jsp" method="get" >
 	  <input type="text" name="key" placeholder="search here">
 	  <input type="submit" value="search"> 
 	  
