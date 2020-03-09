@@ -12,8 +12,7 @@
 <h3><p align="right"> <a href="logout">Logout</a> </p></h3>
 <h3><p align="right"> <a href=" ">Search</a> </p></h3>
 <%	
-
-	try
+try
 
 {
 	Class.forName("oracle.jdbc.driver.OracleDriver");

@@ -49,7 +49,7 @@ public class Loginservlet extends HttpServlet {
 		    	if(tuserid.equals("admin")) {
 		    		HttpSession session = request.getSession();
 		    		session.setAttribute("admin",rs.getInt(1));
-		    		response.sendRedirect("done.html ");
+		    		response.sendRedirect("options.jsp");
 		    	}
 		    	else {
 		    		HttpSession session = request.getSession();
