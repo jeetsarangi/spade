@@ -10,11 +10,21 @@
 <h1 style="color:blue" align="center">Products Entry</h1></br>
 <%@page import="java.sql.*" %>
 <h3><p align="right"> <a href="logout">Logout</a> </p></h3>
+<h3 style="color:red" align="center">Product has been entered</h3></br>
+<% 
 
-<% if (session.getAttribute("admin") == null) {
+
+if (session.getAttribute("admin") == null) {
     response.sendRedirect("login.html"); 
 } 		
 else {
+	if(request.getParameter("x")==null)
+	{
+		response.sendRedirect("options.jsp");
+	}
+	else{
+
+
 %>
 <div style="float:left">
 <form action="change" method="get">
@@ -96,7 +106,7 @@ else {
 
 
 <% 
-}
+}}
 %>
 
 

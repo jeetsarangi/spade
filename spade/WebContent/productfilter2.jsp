@@ -11,8 +11,46 @@
 <h3><p align="right"> <a href="Home.html">Homepage</a> </p></h3>
 <h2 style="color:blue;"><center>Select Product</center></h2>
  <h3><p align="right"> <a href="login.html">Login</a> </p></h3>
+
+
+<div align="left">
+ <form action="productfilter2.jsp" method="get">
+
+
+
+<tr>
+<td>Add Filter</td>
+<td><select name="type">
+        <option value="no">No Filter</option>
+        <option value="sedan">sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Sports">Sports</option>
+        <option value="parts">parts</option>
+        
+      </select>
+</td></tr>
+<tr><td><input type="submit" value="add"></td></tr>
+
+
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
  <div align="center">
- <%	
+<%	
 try
 {
 	Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -20,20 +58,24 @@ try
 catch(ClassNotFoundException e){
 	System.out.println(e);
 } 
-
 if (session.getAttribute("id") != null) {
-    response.sendRedirect("search.jsp"); 
+    response.sendRedirect("products.jsp"); 
 } 	else{
+
 Connection conn=null;
 PreparedStatement ps = null;
+String type = request.getParameter("type");
+if(type.equals("no")){
+	 response.sendRedirect("products2.jsp"); 
+}else{
+	
 
-String key = request.getParameter("key");
-String key2 = "%"+key+"%";
-
+String branch = request.getParameter("input");
 try{
 	conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","scott99","tiger");
-	 ps = conn.prepareStatement("Select * FROM products WHERE pname LIKE ? ");
-	 ps.setString(1,key2);
+	 ps = conn.prepareStatement("SELECT * FROM products where ptype like ?");
+	 ps.setString(1,type);
+	 
 	 
 	 
 	 ResultSet rs= ps.executeQuery();
@@ -41,11 +83,11 @@ try{
 	 
 	 
 	 if(!(rs.next())){
-	  %> <h1>no result</h1><%
+	  out.println("NOT AVAILABLE");
   }
   else{ 
 	 %>
-	   <form action="" method="" >
+	   <form action="searchout.jsp" method="get" >
 	  <input type="text" name="key" placeholder="search here">
 	  <input type="submit" value="search"> 
 	  
@@ -97,6 +139,6 @@ finally
 	 catch(Exception e){
 		 System.out.println(e);
 	 }
-}}
+}}}
 %>
  </div>

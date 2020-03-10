@@ -68,7 +68,7 @@ public class entry extends HttpServlet {
 			    ps.executeQuery();
 
  
-			    response.sendRedirect("options.jsp");
+			    response.sendRedirect("options2.jsp?x=1");
 
 			    
 			   

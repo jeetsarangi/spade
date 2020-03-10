@@ -11,6 +11,44 @@
 <h3><p align="right"> <a href="Home.html">Homepage</a> </p></h3>
 <h2 style="color:blue;"><center>Select Product</center></h2>
  <h3><p align="right"> <a href="login.html">Login</a> </p></h3>
+
+
+<div align="left">
+ <form action="productfilter2.jsp" method="get">
+
+
+
+<tr>
+<td>Add Filter</td>
+<td><select name="type">
+         <option value="no">No Filter</option>
+        <option value="sedan">sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="Sports">Sports</option>
+        <option value="parts">parts</option>
+        
+      </select>
+</td></tr>
+<tr><td><input type="submit" value="add"></td></tr>
+
+
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
  <div align="center">
 <%	
 try
