@@ -49,8 +49,8 @@ public class order extends HttpServlet {
 		PreparedStatement order = null;
 		PreparedStatement user = null;
 		
-		final String username="jeetsarangiflash@gmail.com";
-		final String password="theoriticalphysicist";
+		final String username="spadeforyou@gmail.com";
+		final String password="ghoshbabu";
 		
 		Properties prop = new Properties();
 	    prop.put("mail.smtp.host", "smtp.gmail.com");
@@ -122,7 +122,7 @@ public class order extends HttpServlet {
 	    	message.setFrom(new InternetAddress(username));
 	    	message.setRecipient(Message.RecipientType.TO, new InternetAddress(u.getString(7)));
 	        message.setSubject("confirmation");
-	        String i=u.getString(4)+"your orders has been placed will dispatch it shorty for delivery";
+	        String i=u.getString(4)+" your orders has been placed will dispatch it shorty for delivery";
 	        message.setText(i);
 	        Transport.send(message);
 	        
