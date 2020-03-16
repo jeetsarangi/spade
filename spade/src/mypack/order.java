@@ -8,6 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.*;
+import java.util.Properties;
+
+import javax.mail.Address;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+
+import java.io.IOException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.*;
+
 
 public class order extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +48,31 @@ public class order extends HttpServlet {
 		PreparedStatement sp = null;
 		PreparedStatement order = null;
 		PreparedStatement user = null;
+		
+		final String username="jeetsarangiflash@gmail.com";
+		final String password="theoriticalphysicist";
+		
+		Properties prop = new Properties();
+	    prop.put("mail.smtp.host", "smtp.gmail.com");
+	    prop.put("mail.smtp.port", "465"); 
+	    prop.put("mail.smtp.auth", "true");
+	    prop.put("mail.smtp.socketFactory.port", "465");
+	    prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+	    
+	    
+	    Session sesson = Session.getInstance(prop,new javax.mail.Authenticator() {
+	    	protected PasswordAuthentication getPasswordAuthentication() {
+            return new PasswordAuthentication(username,password);              
+	    	}
+	    });
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		HttpSession session = request.getSession();
 		
@@ -79,15 +118,33 @@ public class order extends HttpServlet {
 		  cart.setInt(1, userid.intValue());
 		  cart.executeQuery();
 		
+		  Message message = new MimeMessage(sesson);
+	    	message.setFrom(new InternetAddress(username));
+	    	message.setRecipient(Message.RecipientType.TO, new InternetAddress(u.getString(7)));
+	        message.setSubject("confirmation");
+	        String i=u.getString(4)+"your orders has been placed will dispatch it shorty for delivery";
+	        message.setText(i);
+	        Transport.send(message);
+	        
+	      
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  response.sendRedirect("done.html");
 		
 		}
+		catch(Exception e) {
+	    	System.out.println(e);
+	    	
+	    }
 		
 		
 		
-		catch(SQLException e){
-		  	 System.out.println(e);
-		  }
+		
 		 finally
 		  {
 		  	 try
@@ -103,6 +160,10 @@ public class order extends HttpServlet {
 		 
 		}
 		}
+	private boolean getString(int i) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	
 }

@@ -99,7 +99,8 @@ try{
 	  
 	  
 	  
-	  do{
+	 int count=0;
+	 do{
 	  
 	  %>
 	
@@ -110,14 +111,17 @@ try{
 	 
 	  <button type="submit" name="car" value="<%=rs.getInt(1)%>" ><img src="<%=rs.getString(4) %>" height="150" width="120"></button>
 	  <h3 style="color:blue"><%=rs.getString(2)%></h3>
-	  </br>
+	  
+	  
+	  
+	  </br> 
 	  
 	  
 	  </form>
 	  
 	  
 	  <%
-	  
+	  count++;
 	  }while(rs.next());
 }}
 catch(SQLException e){

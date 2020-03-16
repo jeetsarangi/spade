@@ -51,6 +51,18 @@ public class deleteorder extends HttpServlet {
 		 try{
 			 conn =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","SCOTT99","tiger");
 			 ps = conn.prepareStatement("delete from orders  WHERE orderno=?");
+			 PreparedStatement sp = conn.prepareStatement("Select * from orders where orderno=?");
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
 			 ps.setInt(1,delete);
 			 ps.executeQuery();
 			 response.sendRedirect("orders.jsp");
